@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'requestdataapp.apps.RequestdataappConfig',
     'projects.apps.ProjectsConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
