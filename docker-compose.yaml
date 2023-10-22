@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+    django-app:
+        container_name: devsearch
+        build: ./firstproject_root
+        command: python manage.py runserver 0.0.0.0:8000
+        restart: unless-stopped
+        volumes:
+            - ./firstproject_root:/app
+        ports:
+            - "8000:8000"
+        env_file:
+            - ./env_variables/devsearch.env
+        depends_on:
+            - postgres_db
+
+    postgres_db:
+        container_name: postgres
+        image: postgres
+        restart: unless-stopped
+        env_file:
+            - ./env_variables/postgres.env
+        volumes:
+            - postgres_db_data:/var/lib/postgresql/data
+
+volumes:
+    postgres_db_data:
